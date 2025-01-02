@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.IntroActivity">
+
+    <ImageView
+        android:id="@+id/img_intro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:contentDescription="@string/todo"
+        android:scaleType="fitXY"
+        android:src="@drawable/intro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_buy_now"
+        style="@style/TextAppearance.AppCompat.Button."
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_15dp"
+        android:background="@drawable/bg_button_welcome"
+        android:drawableEnd="@drawable/ic_buy_32"
+        android:paddingStart="@dimen/_30dp"
+        android:paddingEnd="@dimen/_30dp"
+        android:text="@string/buy_now"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        tools:ignore="RtlSymmetry,UnusedAttribute" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_receive_merchandise"
+        style="@style/TextAppearance.AppCompat.Button."
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15dp"
+        android:background="@drawable/bg_button_welcome"
+        android:drawableEnd="@drawable/ic_qr_code_32"
+        android:drawablePadding="0dp"
+        android:paddingStart="@dimen/_30dp"
+        android:paddingEnd="@dimen/_30dp"
+        android:text="@string/receive_merchandise"
+        app:layout_constraintEnd_toEndOf="@+id/btn_buy_now"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btn_buy_now"
+        app:layout_constraintTop_toBottomOf="@+id/btn_buy_now"
+        tools:ignore="RtlSymmetry,UnusedAttribute" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="@string/text_banner"
+        android:paddingHorizontal="5dp"
+        android:textAlignment="center"
+        android:fontFamily="@font/open_sans_bold"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_intro" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

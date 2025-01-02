@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">fixed_device</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="buy_now">Mua ngay</string>
+    <string name="receive_merchandise">Nhận hàng</string>
+    <string name="todo">TODO</string>
+    <string name="text_banner">Chọn ngay - Chạm nhẹ - Thanh toán siêu tốc!</string>
+    <string name="scan_qr_code">SCAN QR CODE</string>
+    <string name="search_anything">Search anything...</string>
+    <string name="_0">0</string>
+    <string name="list_product">Danh sách sản phẩm</string>
+    <string name="page_title">Test</string>
+</resources>

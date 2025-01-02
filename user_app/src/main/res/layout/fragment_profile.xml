@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F4F4F4"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.shopping.ProfileFragment"
+    tools:ignore="ScrollViewCount">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
+        app:layout_constraintTop_toTopOf="@+id/guideline9"
+        >
+
+
+        <TextView
+            android:id="@+id/tv_setting"
+            style="@style/BigTextViewThin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/setting"
+            app:layout_constraintStart_toStartOf="@id/gl_vertical1"
+            app:layout_constraintTop_toTopOf="@+id/gl_horizontal" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profile_personal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            app:layout_constraintStart_toStartOf="@id/gl_vertical1"
+            app:layout_constraintEnd_toEndOf="@id/gl_vertical2"
+            app:layout_constraintTop_toBottomOf="@id/tv_setting"
+            >
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_avatar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintStart_toStartOf="@id/profile_personal"
+                app:layout_constraintTop_toTopOf="@id/profile_personal"
+                android:src="@color/black"
+
+                />
+            <TextView
+                android:id="@+id/tv_name"
+                android:text="@string/my_name"
+                style="@style/h2"
+                android:layout_marginStart="@dimen/_10dp"
+                app:layout_constraintStart_toEndOf="@id/img_avatar"
+                app:layout_constraintTop_toTopOf="@id/profile_personal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_personal_detail"
+                app:layout_constraintStart_toStartOf="@+id/tv_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginEnd="@dimen/_15dp"
+                android:src="@drawable/ic_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/profile_personal"
+                app:layout_constraintEnd_toEndOf="@id/profile_personal"
+                app:layout_constraintTop_toTopOf="@id/profile_personal"
+                app:tint="@color/g_blue_gray200"
+                tools:ignore="ContentDescription,ImageContrastCheck" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/h2"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/gl_vertical1"
+            app:layout_constraintTop_toBottomOf="@id/profile_personal"
+            android:layout_marginTop="@dimen/_20dp"
+            android:text="@string/order"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/my_order"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5dp"
+            app:layout_constraintEnd_toStartOf="@+id/gl_vertical2"
+            app:layout_constraintStart_toStartOf="@id/gl_vertical1"
+            app:layout_constraintTop_toBottomOf="@id/tv_order">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/history_order"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5dp"
+                app:layout_constraintStart_toStartOf="@id/my_order"
+                app:layout_constraintEnd_toEndOf="@id/my_order"
+                app:layout_constraintTop_toTopOf="@id/history_order"
+                >
+                <ImageView
+                    android:id="@+id/img_history_order"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@drawable/settings_items_background"
+                    android:src="@drawable/ic_all_orders"
+                    app:tint="@color/white"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/tv_allOrder"
+                    style="@style/MediumTextViewThin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10dp"
+                    android:text="@string/history_order"
+                    app:layout_constraintBottom_toBottomOf="@id/img_history_order"
+                    app:layout_constraintStart_toEndOf="@id/img_history_order"
+                    app:layout_constraintTop_toTopOf="@+id/img_history_order" />
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginEnd="@dimen/_15dp"
+                    android:src="@drawable/ic_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/history_order"
+                    app:layout_constraintEnd_toEndOf="@id/history_order"
+                    app:layout_constraintTop_toTopOf="@id/history_order"
+                    app:tint="@color/g_blue_gray200"
+                    tools:ignore="ContentDescription,ImageContrastCheck" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/check_order"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5dp"
+                app:layout_constraintEnd_toEndOf="@id/my_order"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/my_order"
+                app:layout_constraintTop_toBottomOf="@+id/history_order">
+
+                <ImageView
+                    android:id="@+id/img_check_order"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:tint="@color/white"
+                    android:src="@drawable/ic_search"
+                    android:background="@drawable/settings_items_background"
+                    app:layout_constraintStart_toStartOf="@id/check_order"
+                    app:layout_constraintTop_toTopOf="@id/check_order"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/tv_check_oder"
+                    style="@style/MediumTextViewThin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10dp"
+                    android:text="@string/checking_order"
+                    app:layout_constraintBottom_toBottomOf="@id/img_check_order"
+                    app:layout_constraintStart_toEndOf="@id/img_check_order"
+                    app:layout_constraintTop_toTopOf="@+id/img_check_order"
+                    />
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginEnd="@dimen/_15dp"
+                    android:src="@drawable/ic_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/g_blue_gray200"
+                    tools:ignore="ContentDescription,ImageContrastCheck" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/notification"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20dp"
+            app:layout_constraintTop_toBottomOf="@id/my_order"
+            app:layout_constraintStart_toStartOf="@id/gl_vertical1"
+            app:layout_constraintEnd_toEndOf="@id/gl_vertical2"
+            >
+            <TextView
+                android:id="@+id/tv_notification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/h2"
+                android:text="@string/notifications"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_notification"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@id/notification"
+                app:layout_constraintStart_toStartOf="@id/notification"
+                app:layout_constraintTop_toBottomOf="@+id/tv_notification">
+
+                <ImageView
+                    android:id="@+id/img_notification"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/settings_items_background"
+                    android:backgroundTint="#4cd964"
+                    android:src="@drawable/ic_notification"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/cl_notification"
+                    app:layout_constraintTop_toTopOf="@id/cl_notification"
+                    app:tint="@color/white"
+                    tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                <TextView
+                    android:id="@+id/tv_notification_app"
+                    style="@style/MediumTextViewThin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10dp"
+                    android:text="@string/notifications"
+                    app:layout_constraintBottom_toBottomOf="@id/img_notification"
+                    app:layout_constraintStart_toEndOf="@id/img_notification"
+                    app:layout_constraintTop_toTopOf="@+id/img_notification"
+                    />
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    app:thumbTint="@color/white"
+                    app:trackTint="@color/g_green1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/Other"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20dp"
+            app:layout_constraintTop_toBottomOf="@id/notification"
+            app:layout_constraintStart_toStartOf="@id/gl_vertical1"
+            app:layout_constraintEnd_toEndOf="@id/gl_vertical2"
+            >
+            <TextView
+                android:id="@+id/tv_other"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/h2"
+                android:text="@string/other"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_logout"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@id/Other"
+                app:layout_constraintStart_toStartOf="@id/Other"
+                app:layout_constraintTop_toBottomOf="@+id/tv_other">
+
+                <ImageView
+                    android:id="@+id/img_logout"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/settings_items_background"
+                    android:backgroundTint="#FA0200"
+                    android:src="@drawable/ic_logout"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/cl_logout"
+                    app:layout_constraintTop_toTopOf="@id/cl_logout"
+                    app:tint="@color/white"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/tv_logout"
+                    style="@style/MediumTextViewThin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10dp"
+                    android:text="@string/logout"
+                    app:layout_constraintBottom_toBottomOf="@id/img_logout"
+                    app:layout_constraintStart_toEndOf="@id/img_logout"
+                    app:layout_constraintTop_toTopOf="@+id/img_logout"
+                    />
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginEnd="@dimen/_15dp"
+                    android:src="@drawable/ic_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/g_blue_gray200"
+                    tools:ignore="ContentDescription,ImageContrastCheck" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_version"
+            style="@style/h2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/version_1_0"
+            android:textAlignment="center"
+            android:textColor="#546E7A"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/gl_vertical2"
+            app:layout_constraintStart_toStartOf="@+id/gl_vertical1" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.02" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_vertical1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_vertical2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
