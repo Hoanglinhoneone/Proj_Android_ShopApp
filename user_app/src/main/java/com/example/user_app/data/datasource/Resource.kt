@@ -1,4 +1,4 @@
-package com.example.user_app.common
+package com.example.user_app.data.datasource
 
 sealed class Resource <T>(
     val data : T? = null,

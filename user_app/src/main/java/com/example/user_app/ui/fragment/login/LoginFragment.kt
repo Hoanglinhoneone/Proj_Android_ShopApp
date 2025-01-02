@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.user_app.R
-import com.example.user_app.common.Resource
+import com.example.user_app.data.datasource.Resource
 import com.example.user_app.databinding.FragmentLoginBinding
 import com.example.user_app.dialog.setupBottomSheetDialog
 import com.example.user_app.ui.activity.ShoppingActivity

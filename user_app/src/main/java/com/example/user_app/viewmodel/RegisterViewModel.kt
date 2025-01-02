@@ -4,10 +4,10 @@ import androidx.lifecycle.ViewModel
 import com.example.user_app.common.Constants.USER_COLLECTION
 import com.example.user_app.common.RegisterFieldState
 import com.example.user_app.common.RegisterValidation
-import com.example.user_app.common.Resource
+import com.example.user_app.data.datasource.Resource
 import com.example.user_app.common.validateEmail
 import com.example.user_app.common.validatePassword
-import com.example.user_app.data.User
+import com.example.user_app.data.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.lifecycle.HiltViewModel

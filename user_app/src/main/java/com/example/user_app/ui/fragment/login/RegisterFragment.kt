@@ -9,8 +9,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.user_app.R
 import com.example.user_app.common.RegisterValidation
-import com.example.user_app.common.Resource
-import com.example.user_app.data.User
+import com.example.user_app.data.datasource.Resource
+import com.example.user_app.data.model.User
 import com.example.user_app.databinding.FragmentRegisterBinding
 import com.example.user_app.ui.fragment.BaseFragment
 import com.example.user_app.viewmodel.RegisterViewModel
