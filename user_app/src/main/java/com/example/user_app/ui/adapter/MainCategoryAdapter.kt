@@ -27,10 +27,12 @@ class MainCategoryAdapter(
         private val autoScrollRunnable = object : Runnable {
             override fun run() {
                 binding.viewPager2.let { viewPager2 ->
-                    val nextItem =
-                        (viewPager2.currentItem + 1) % (viewPager2.adapter?.itemCount ?: 1)
-                    viewPager2.setCurrentItem(nextItem, true)
-                    autoScrollHandler?.postDelayed(this, 3000)
+                    val itemCount = viewPager2.adapter?.itemCount ?: 0
+                    if (itemCount > 0) {
+                        val nextItem = (viewPager2.currentItem + 1) % itemCount
+                        viewPager2.setCurrentItem(nextItem, true)
+                        autoScrollHandler?.postDelayed(this, 3000) // Cuộn lại sau 3 giây
+                    }
                 }
             }
         }
