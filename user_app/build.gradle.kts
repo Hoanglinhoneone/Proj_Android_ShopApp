@@ -44,6 +44,9 @@ android {
 }
 
 dependencies {
+
+    implementation(libs.dotsindicator)
+
     implementation (libs.circleimageview)
     implementation (libs.github.progressbutton)
 

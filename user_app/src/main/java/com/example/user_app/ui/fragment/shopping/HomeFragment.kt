@@ -1,7 +1,6 @@
 package com.example.user_app.ui.fragment.shopping
 
 import android.view.View
-import androidx.lifecycle.whenCreated
 import com.example.user_app.R
 import com.example.user_app.databinding.FragmentHomeBinding
 import com.example.user_app.ui.adapter.HomeViewPagerAdapter
@@ -17,7 +16,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class HomeFragment : BaseFragment() {
     private lateinit var binding: FragmentHomeBinding
     override fun getLayoutId(): Int {
-        return  R.layout.fragment_home
+        return R.layout.fragment_home
     }
 
     override fun setUpView(view: View) {
@@ -35,7 +34,7 @@ class HomeFragment : BaseFragment() {
             HomeViewPagerAdapter(categoryFragments, childFragmentManager, lifecycle)
         binding.viewPager2.adapter = viewpager2Adapter
         TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
-            when(position) {
+            when (position) {
                 0 -> tab.text = "Main"
                 1 -> tab.text = "Chair"
                 2 -> tab.text = "Cupboard"
