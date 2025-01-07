@@ -20,7 +20,7 @@ class ChildAdapter(
     constructor(viewType: Int, itemList: List<Product>) : this(viewType) {
         this.itemList = itemList
     }
-    constructor(viewType: Int, itemListBanner: List<Banner>) : this(viewType) {
+    constructor(viewType: Int, itemListBanner: ArrayList<Banner>) : this(viewType) {
         this.itemListBanner = itemListBanner
     }
 

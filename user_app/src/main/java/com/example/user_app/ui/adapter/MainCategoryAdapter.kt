@@ -35,7 +35,7 @@ class MainCategoryAdapter(
             }
         }
 
-        fun bindBannerView(banners: List<Banner>) {
+        fun bindBannerView(banners: ArrayList<Banner>) {
             val adapter = ChildAdapter(DataItemType.LIST_BANNER, banners)
             binding.viewPager2.adapter = adapter
             binding.dotsIndicator.setViewPager2(binding.viewPager2)

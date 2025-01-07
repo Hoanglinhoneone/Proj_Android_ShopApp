@@ -3,12 +3,12 @@ package com.example.user_app.data.model
 data class DataItem(val viewType: Int) {
 
     var recyclerItemList: List<Product>? = null
-    var banners: List<Banner>? = null
+    var banners: ArrayList<Banner>? = null
 
     constructor(viewType: Int, recyclerItemList: List<Product>) : this(viewType) {
         this.recyclerItemList = recyclerItemList
     }
-    constructor(viewType: Int, banners: List<Banner>) : this(viewType) {
+    constructor(viewType: Int, banners: ArrayList<Banner>) : this(viewType) {
         this.banners = banners
     }
 }
