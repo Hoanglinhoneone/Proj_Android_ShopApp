@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="@dimen/_10dp"
+    tools:context=".ui.fragment.shopping.home.ProductDetailFragment">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardProductImages"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_20dp"
+        app:cardCornerRadius="@dimen/_15dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/line_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/productImages"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_width="@dimen/_40dp"
+            android:layout_height="@dimen/_40dp"
+            android:padding="@dimen/_5dp"
+            android:src="@drawable/ic_close"
+            app:tint="@color/g_black"
+            tools:ignore="ContentDescription" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/countImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_10dp"
+        android:layout_marginBottom="@dimen/_10dp"
+        android:text="@string/count_image"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/line_horizontal"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/nameProduct"
+        style="@style/h3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:text="@string/txt_name_product"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/priceProduct" />
+
+    <View
+        android:id="@+id/topLine"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="@dimen/_10dp"
+        android:background="@color/g_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameProduct" />
+
+    <TextView
+        android:id="@+id/priceProduct"
+        style="@style/h3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
+        android:text="@string/price_product"
+        android:textAlignment="center"
+        android:textColor="@color/g_orange"
+        app:layout_constraintEnd_toStartOf="@+id/line_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardProductImages" />
+
+    <TextView
+        android:id="@+id/titleDescribe"
+        style="@style/h3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:text="@string/describe_product"
+        android:textColor="@color/g_gray700"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameProduct" />
+
+    <TextView
+        android:id="@+id/describeProduct"
+        style="@style/h3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:text="@string/content_describe"
+        android:textColor="@color/g_gray700"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleDescribe"
+        tools:ignore="VisualLintLongText" />
+
+    <View
+        android:id="@+id/bottomLine"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_10dp"
+        android:background="@color/g_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/describeProduct" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/addToCart"
+        style="@style/blueButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_15dp"
+        android:layout_marginBottom="@dimen/_20dp"
+        android:text="@string/add_card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/line_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="VisualLintButtonSize" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buyNow"
+        style="@style/blueButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_15dp"
+        android:text="@string/buy_now"
+        app:layout_constraintBottom_toBottomOf="@+id/addToCart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/line_vertical"
+        app:layout_constraintTop_toTopOf="@+id/addToCart"
+        tools:ignore="VisualLintButtonSize" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+</androidx.constraintlayout.widget.ConstraintLayout>

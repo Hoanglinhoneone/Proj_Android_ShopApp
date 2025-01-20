@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 pluginManagement {
     repositories {
         google {
@@ -10,7 +12,7 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
-        maven {  url = uri("https://jitpack.io") }
+        maven { url = uri("https://jitpack.io") }
     }
 }
 dependencyResolutionManagement {
@@ -24,7 +26,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "ShopApp"
 include(":app")
-include(":cart")
-include(":user_app")
-include(":payment")
-include(":fixed_device")
+include(":user")
+include(":base")

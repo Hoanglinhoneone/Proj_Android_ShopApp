@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F4F4"
+    android:fillViewport="true"
+    tools:context=".ui.fragment.shopping.setting.ProfileFragment"
+    tools:ignore="ScrollViewCount">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
+        app:layout_constraintTop_toTopOf="@+id/guideline9">
+
+        <TextView
+            android:id="@+id/titlePage"
+            style="@style/BigTextViewThin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/setting"
+            app:layout_constraintStart_toStartOf="@id/gl_vertical1"
+            app:layout_constraintTop_toTopOf="@+id/gl_horizontal" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profilePersonal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            app:layout_constraintEnd_toEndOf="@id/gl_vertical2"
+            app:layout_constraintStart_toStartOf="@id/gl_vertical1"
+            app:layout_constraintTop_toBottomOf="@id/titlePage">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/avatar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@color/black"
+                app:layout_constraintStart_toStartOf="@id/profilePersonal"
+                app:layout_constraintTop_toTopOf="@id/profilePersonal" />
+
+            <TextView
+                android:id="@+id/myName"
+                style="@style/h2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10dp"
+                android:text="@string/my_name"
+                app:layout_constraintStart_toEndOf="@id/avatar"
+                app:layout_constraintTop_toTopOf="@id/profilePersonal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_personal_detail"
+                app:layout_constraintStart_toStartOf="@+id/myName"
+                app:layout_constraintTop_toBottomOf="@id/myName" />
+
+            <ImageView
+                android:id="@+id/detailPersonal"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginEnd="@dimen/_15dp"
+                android:src="@drawable/ic_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/profilePersonal"
+                app:layout_constraintEnd_toEndOf="@id/profilePersonal"
+                app:layout_constraintTop_toTopOf="@id/profilePersonal"
+                app:tint="@color/g_blue_gray200"
+                tools:ignore="ContentDescription,ImageContrastCheck" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/order"
+            style="@style/h2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20dp"
+            android:text="@string/order"
+            app:layout_constraintStart_toStartOf="@id/gl_vertical1"
+            app:layout_constraintTop_toBottomOf="@id/profilePersonal" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/my_order"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5dp"
+            app:layout_constraintEnd_toStartOf="@+id/gl_vertical2"
+            app:layout_constraintStart_toStartOf="@id/gl_vertical1"
+            app:layout_constraintTop_toBottomOf="@id/order">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/orderHistory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5dp"
+                app:layout_constraintEnd_toEndOf="@id/my_order"
+                app:layout_constraintStart_toStartOf="@id/my_order"
+                app:layout_constraintTop_toTopOf="@id/orderHistory">
+
+                <ImageView
+                    android:id="@+id/img_history_order"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/settings_items_background"
+                    android:src="@drawable/ic_all_orders"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/white"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    style="@style/MediumTextViewThin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10dp"
+                    android:text="@string/history_order"
+                    app:layout_constraintBottom_toBottomOf="@id/img_history_order"
+                    app:layout_constraintStart_toEndOf="@id/img_history_order"
+                    app:layout_constraintTop_toTopOf="@+id/img_history_order" />
+
+                <ImageView
+                    android:id="@+id/historyDetail"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginEnd="@dimen/_15dp"
+                    android:src="@drawable/ic_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/orderHistory"
+                    app:layout_constraintEnd_toEndOf="@id/orderHistory"
+                    app:layout_constraintTop_toTopOf="@id/orderHistory"
+                    app:tint="@color/g_blue_gray200"
+                    tools:ignore="ContentDescription,ImageContrastCheck" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/check_order"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5dp"
+                app:layout_constraintEnd_toEndOf="@id/my_order"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/my_order"
+                app:layout_constraintTop_toBottomOf="@+id/orderHistory">
+
+                <ImageView
+                    android:id="@+id/img_check_order"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/settings_items_background"
+                    android:src="@drawable/ic_search"
+                    app:layout_constraintStart_toStartOf="@id/check_order"
+                    app:layout_constraintTop_toTopOf="@id/check_order"
+                    app:tint="@color/white"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/tv_check_oder"
+                    style="@style/MediumTextViewThin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10dp"
+                    android:text="@string/checking_order"
+                    app:layout_constraintBottom_toBottomOf="@id/img_check_order"
+                    app:layout_constraintStart_toEndOf="@id/img_check_order"
+                    app:layout_constraintTop_toTopOf="@+id/img_check_order" />
+
+                <ImageView
+                    android:id="@+id/detailChecking"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginEnd="@dimen/_15dp"
+                    android:src="@drawable/ic_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/g_blue_gray200"
+                    tools:ignore="ContentDescription,ImageContrastCheck" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/notifications"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20dp"
+            app:layout_constraintEnd_toEndOf="@id/gl_vertical2"
+            app:layout_constraintStart_toStartOf="@id/gl_vertical1"
+            app:layout_constraintTop_toBottomOf="@id/my_order">
+
+            <TextView
+                android:id="@+id/titleNotifications"
+                style="@style/h2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/notifications"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/notification"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@id/titleNotifications"
+                app:layout_constraintStart_toStartOf="@id/titleNotifications"
+                app:layout_constraintTop_toBottomOf="@+id/titleNotifications">
+
+                <ImageView
+                    android:id="@+id/imageNotification"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/settings_items_background"
+                    android:backgroundTint="#4cd964"
+                    android:src="@drawable/ic_notification"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/notification"
+                    app:layout_constraintTop_toTopOf="@id/notification"
+                    app:tint="@color/white"
+                    tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                <TextView
+                    style="@style/MediumTextViewThin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10dp"
+                    android:text="@string/notifications"
+                    app:layout_constraintBottom_toBottomOf="@id/imageNotification"
+                    app:layout_constraintStart_toEndOf="@id/imageNotification"
+                    app:layout_constraintTop_toTopOf="@+id/imageNotification" />
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/stateNotification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:thumbTint="@color/white"
+                    app:trackTint="@color/g_green1" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/Other"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20dp"
+            app:layout_constraintEnd_toEndOf="@id/gl_vertical2"
+            app:layout_constraintStart_toStartOf="@id/gl_vertical1"
+            app:layout_constraintTop_toBottomOf="@id/notifications">
+
+            <TextView
+                android:id="@+id/other"
+                style="@style/h2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/other"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/logout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5dp"
+                app:layout_constraintEnd_toEndOf="@id/Other"
+                app:layout_constraintStart_toStartOf="@id/Other"
+                app:layout_constraintTop_toBottomOf="@+id/other">
+
+                <ImageView
+                    android:id="@+id/imageLogout"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/settings_items_background"
+                    android:backgroundTint="#FA0200"
+                    android:src="@drawable/ic_logout"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/logout"
+                    app:layout_constraintTop_toTopOf="@id/logout"
+                    app:tint="@color/white"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    style="@style/MediumTextViewThin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10dp"
+                    android:text="@string/logout"
+                    app:layout_constraintBottom_toBottomOf="@id/imageLogout"
+                    app:layout_constraintStart_toEndOf="@id/imageLogout"
+                    app:layout_constraintTop_toTopOf="@+id/imageLogout" />
+
+                <ImageView
+                    android:id="@+id/logoutDetail"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginEnd="@dimen/_15dp"
+                    android:src="@drawable/ic_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/g_blue_gray200"
+                    tools:ignore="ContentDescription,ImageContrastCheck" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/version"
+            style="@style/h2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/version_1_0"
+            android:textAlignment="center"
+            android:textColor="#546E7A"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/gl_vertical2"
+            app:layout_constraintStart_toStartOf="@+id/gl_vertical1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.02" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_vertical1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_vertical2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

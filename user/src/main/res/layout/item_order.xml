@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_10dp"
+    android:layout_marginVertical="@dimen/_5dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/content_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/state_order"
+            android:layout_width="@dimen/_10dp"
+            android:layout_height="@dimen/_10dp"
+            android:layout_gravity="center"
+            android:src="@color/green"
+            app:layout_constraintBottom_toBottomOf="@+id/code_order"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/code_order" />
+
+        <TextView
+            android:id="@+id/code_order"
+            style="@style/h2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10dp"
+            android:layout_weight="1"
+            android:text="@string/txt_package_code"
+
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/detail_order"
+            app:layout_constraintStart_toEndOf="@id/state_order"
+            app:layout_constraintTop_toTopOf="@id/code_order"
+
+            />
+
+        <ImageView
+            android:id="@+id/detail_order"
+            android:layout_width="@dimen/_15dp"
+            android:layout_height="@dimen/_15dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_10dp"
+            android:src="@drawable/ic_arrow"
+            app:layout_constraintBottom_toBottomOf="@+id/code_order"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/code_order"
+            tools:ignore="ContentDescription,ImageContrastCheck" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
+        android:text="@string/txt_datetime"
+        app:layout_constraintEnd_toStartOf="@id/txt_state"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/content_one" />
+
+    <TextView
+        android:id="@+id/txt_state"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:alpha="0.7"
+        android:text="@string/txt_state"
+        android:textColor="#546E7A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline15"
+        app:layout_constraintTop_toTopOf="@+id/txt_date"
+        tools:ignore="TextContrastCheck" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/g_gray700"
+        android:backgroundTint="@color/g_blue_gray200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_date" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

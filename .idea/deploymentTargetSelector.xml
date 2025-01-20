@@ -5,10 +5,10 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="user_app">
+      <SelectionState runConfigName="user">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="fixed_device">
+      <SelectionState runConfigName="base">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
