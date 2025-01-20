@@ -6,10 +6,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.shop.user.R
 import com.shop.user.databinding.ActivityLoginBinding
-import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
-@AndroidEntryPoint
 class LoginActivity : BaseActivity() {
 
     private val binding by lazy {

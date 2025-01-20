@@ -11,10 +11,8 @@ import com.shop.user.ui.fragment.shopping.SearchFragment
 import com.shop.user.ui.fragment.shopping.cart.CartFragment
 import com.shop.user.ui.fragment.shopping.home.HomeFragment
 import com.shop.user.ui.fragment.shopping.setting.ProfileFragment
-import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
-@AndroidEntryPoint
 class ShoppingActivity : AppCompatActivity() {
     /*========================================================================
       VARIABLES

@@ -1,10 +1,14 @@
-package com.shop.user.viewmodel
+package com.shop.user.viewmodel.cart
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.shop.user.data.model.Product
 
 class CartViewModel() : ViewModel() {
+
+    /*========================================================================
+      VARIABLES
+    =========================================================================*/
     private val _cartItems = MutableLiveData<MutableList<Product>>()
     val cartItems: MutableLiveData<MutableList<Product>> = _cartItems
 

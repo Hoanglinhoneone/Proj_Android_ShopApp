@@ -41,23 +41,30 @@ android {
 }
 
 dependencies {
-    implementation(libs.dotsindicator.v510)
+// Logging và Debugging
+    implementation(libs.timber)
+
+// Networking
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+
+// UI Components
+    implementation(libs.dotsindicator.v510)
+    implementation(libs.material)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.constraintlayout)
+
+// Lifecycle và ViewModel
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.extensions)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
+
+// Image Loading
     implementation(libs.glide)
-    implementation(libs.gson)
-    implementation (libs.timber)
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
+
+// Firebase
     implementation(libs.firebase.database)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
 }

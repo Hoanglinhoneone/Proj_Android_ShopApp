@@ -1,4 +1,4 @@
-package com.shop.user.viewmodel
+package com.shop.user.viewmodel.login
 
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -9,20 +9,19 @@ import com.shop.user.common.validatePassword
 import com.shop.user.data.model.RegisterFieldState
 import com.shop.user.data.model.RegisterValidation
 import com.shop.user.data.model.User
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.runBlocking
 import timber.log.Timber
-import javax.inject.Inject
 
-@HiltViewModel
-class RegisterViewModel @Inject constructor(
-    private val firebaseAuth: FirebaseAuth,
-    private val db: FirebaseFirestore
-) : ViewModel() {
+class RegisterViewModel : ViewModel() {
+    /*========================================================================
+      VARIABLES
+    =========================================================================*/
+    private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     private val _register =
         MutableStateFlow<com.shop.user.data.datasource.Resource<User>>(com.shop.user.data.datasource.Resource.Unspecified())
@@ -31,6 +30,9 @@ class RegisterViewModel @Inject constructor(
     private val _validation = Channel<RegisterFieldState>()
     val validation = _validation.receiveAsFlow()
 
+    /*========================================================================
+      FUNCTIONS
+    =========================================================================*/
     fun createAccountWitEmailAndPassword(user: User, password: String) {
         Timber.i("Create Account With Email : $user And Password : $password")
         if (checkValidation(user, password)) {

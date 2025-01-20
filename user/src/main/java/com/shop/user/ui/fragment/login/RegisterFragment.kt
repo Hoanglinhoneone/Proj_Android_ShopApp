@@ -1,7 +1,7 @@
 package com.shop.user.ui.fragment.login
 
 import android.graphics.Color
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.github.razir.progressbutton.attachTextChangeAnimator
@@ -13,22 +13,21 @@ import com.shop.user.data.model.RegisterValidation
 import com.shop.user.data.model.User
 import com.shop.user.databinding.FragmentRegisterBinding
 import com.shop.user.ui.fragment.BaseFragment
-import com.shop.user.viewmodel.RegisterViewModel
-import dagger.hilt.android.AndroidEntryPoint
+import com.shop.user.viewmodel.login.RegisterViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-@AndroidEntryPoint
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::inflate) {
     /*========================================================================
         VARIABLES
     =========================================================================*/
-    private val viewModel by viewModels<RegisterViewModel>()
+    private lateinit var viewModel: RegisterViewModel
 
     /*========================================================================
         OVERRIDDEN METHODS
     =========================================================================*/
     override fun initView() {
+        viewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
         bindProgressButton(binding.register)
         binding.apply {
             register.setOnClickListener {

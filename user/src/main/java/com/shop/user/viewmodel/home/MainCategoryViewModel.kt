@@ -1,4 +1,4 @@
-package com.shop.user.viewmodel
+package com.shop.user.viewmodel.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

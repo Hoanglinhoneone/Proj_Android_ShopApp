@@ -3,7 +3,7 @@ package com.shop.user.ui.fragment.login
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.widget.Toast
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.github.razir.progressbutton.attachTextChangeAnimator
@@ -19,23 +19,22 @@ import com.shop.user.ui.common.showSnackBarShort
 import com.shop.user.ui.dialog.ForgotPasswordDialog
 import com.shop.user.ui.dialog.OnItemClickListener
 import com.shop.user.ui.fragment.BaseFragment
-import com.shop.user.viewmodel.LoginViewModel
-import dagger.hilt.android.AndroidEntryPoint
+import com.shop.user.viewmodel.login.LoginViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-@AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
     /*========================================================================
       VARIABLES
     =========================================================================*/
-    private val viewModel by viewModels<LoginViewModel>()
+    private lateinit var viewModel: LoginViewModel
 
     /*========================================================================
       OVERRIDDEN METHODS
     =========================================================================*/
     @SuppressLint("ResourceAsColor")
     override fun initView() {
+        viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         Timber.i("bindProgressButton")
         bindProgressButton(binding.login)
         binding.login.attachTextChangeAnimator()

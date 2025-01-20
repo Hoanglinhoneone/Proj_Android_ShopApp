@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
     id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -48,29 +47,33 @@ dependencies {
     implementation(libs.circleimageview)
     implementation(libs.dotsindicator)
     implementation(libs.github.progressbutton)
+
     // Navigation Libraries
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.navigation.runtime.ktx)
+
     // Lifecycle and ViewModel Libraries
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.extensions)
+
     // Networking Libraries
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+
     // Logging
     implementation(libs.timber)
+
     // Image Loading Libraries
     implementation(libs.glide)
+
     // Firebase Libraries
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
     implementation(libs.firebase.firestore)
-    // Dependency Injection
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+
     // Android Core Libraries
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity)

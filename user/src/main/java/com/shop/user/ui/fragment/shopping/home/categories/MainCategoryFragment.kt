@@ -9,7 +9,7 @@ import com.shop.user.data.model.Product
 import com.shop.user.databinding.FragmentMainCategoryBinding
 import com.shop.user.ui.adapter.home.MainCategoryAdapter
 import com.shop.user.ui.fragment.BaseFragment
-import com.shop.user.viewmodel.MainCategoryViewModel
+import com.shop.user.viewmodel.home.MainCategoryViewModel
 import timber.log.Timber
 
 

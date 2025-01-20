@@ -1,20 +1,19 @@
-package com.shop.user.viewmodel
+package com.shop.user.viewmodel.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import javax.inject.Inject
 
-@HiltViewModel
-class LoginViewModel @Inject constructor(
-    private val firebaseAuth: FirebaseAuth
-) : ViewModel() {
+class LoginViewModel : ViewModel() {
+    /*========================================================================
+      VARIABLES
+    =========================================================================*/
+    private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     private val _login = MutableSharedFlow<com.shop.user.data.datasource.Resource<FirebaseUser>>()
     val login = _login.asSharedFlow()
@@ -22,6 +21,9 @@ class LoginViewModel @Inject constructor(
     private val _resetPass = MutableSharedFlow<com.shop.user.data.datasource.Resource<String>>()
     val resetPass = _resetPass.asSharedFlow()
 
+    /*========================================================================
+        FUNCTIONS
+    =========================================================================*/
     fun loginWithEmailAndPassword(email: String, password: String) {
         Timber.i("Login with email and password")
         viewModelScope.launch {
