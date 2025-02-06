@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:name="com.linh.fixed_device.ui.fragment.ReceiveMerchandiseFragment"
+        android:name="com.shop.base.ui.fragment.ReceiveMerchandiseFragment"
         tools:layout="@layout/fragment_receive_merchandise" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
+    id("androidx.navigation.safeargs.kotlin")
+//    id("com.google.devtools.ksp")
     id("kotlin-kapt")
 }
 
@@ -48,6 +50,24 @@ dependencies {
     implementation(libs.dotsindicator)
     implementation(libs.github.progressbutton)
 
+    // Room libraries
+    implementation(libs.androidx.room.runtime)
+    // If this project uses any Kotlin source, use Kotlin Symbol Processing (KSP)
+    // See Add the KSP plugin to your project
+//    ksp(libs.androidx.room.compiler)
+    // If this project only uses Java source, use the Java annotationProcessor
+    // No additional plugins are necessary
+//    val room_version = "2.6.1"
+    annotationProcessor(libs.androidx.room.compiler)
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation(libs.androidx.room.ktx)
+    // optional - Guava support for Room, including Optional and ListenableFuture
+    implementation(libs.androidx.room.guava)
+    // optional - Test helpers
+    testImplementation(libs.androidx.room.testing)
+    // optional - Paging 3 Integration
+    implementation(libs.androidx.room.paging)
+
     // Navigation Libraries
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
@@ -78,7 +98,6 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity)
 }
-
 kapt {
     correctErrorTypes = true
 }

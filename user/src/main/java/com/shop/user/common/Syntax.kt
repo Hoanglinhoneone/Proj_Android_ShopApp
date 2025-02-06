@@ -39,23 +39,18 @@ class Syntax {
     /*========================================================================
         PUBLIC FUNCTIONS
     =========================================================================*/
-    fun doSomething() {
-        // Public logic here
+    fun myPublicFunction() {
     }
 
     /*========================================================================
         FUNCTIONS
     =========================================================================*/
-    private fun helperFunction() {
-        // Private logic here
+    private fun myPrivateFunction() {
     }
 
     /*========================================================================
         INNER CLASSES
     =========================================================================*/
     inner class MyInnerClass {
-        fun innerFunction() {
-            // Inner class logic
-        }
     }
 }

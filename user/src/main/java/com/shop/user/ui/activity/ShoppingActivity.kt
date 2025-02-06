@@ -9,7 +9,7 @@ import com.shop.user.databinding.ActivityShoppingBinding
 import com.shop.user.ui.adapter.Viewpager2Adapter
 import com.shop.user.ui.fragment.shopping.SearchFragment
 import com.shop.user.ui.fragment.shopping.cart.CartFragment
-import com.shop.user.ui.fragment.shopping.home.HomeFragment
+import com.shop.user.ui.fragment.shopping.home.HomeParentFragment
 import com.shop.user.ui.fragment.shopping.setting.ProfileFragment
 import timber.log.Timber
 
@@ -37,7 +37,7 @@ class ShoppingActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val listFragment =
-            listOf(HomeFragment(), SearchFragment(), CartFragment(), ProfileFragment())
+            listOf(HomeParentFragment(), SearchFragment(), CartFragment(), ProfileFragment())
         val adapter = Viewpager2Adapter(this, listFragment)
         binding.contentPage.adapter = adapter
 

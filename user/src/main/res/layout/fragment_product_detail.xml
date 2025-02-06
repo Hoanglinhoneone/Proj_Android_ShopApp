@@ -25,6 +25,7 @@
             android:layout_height="match_parent" />
 
         <ImageView
+            android:id="@+id/close"
             android:layout_width="@dimen/_40dp"
             android:layout_height="@dimen/_40dp"
             android:padding="@dimen/_5dp"

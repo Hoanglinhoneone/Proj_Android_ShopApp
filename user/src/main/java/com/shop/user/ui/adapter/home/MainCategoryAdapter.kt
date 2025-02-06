@@ -13,10 +13,15 @@ import com.shop.user.data.model.Product
 import com.shop.user.databinding.ItemRecyclerviewHorizontalBinding
 import com.shop.user.databinding.ItemRecyclerviewVerticalBinding
 import com.shop.user.databinding.LayoutBannerBinding
+import com.shop.user.ui.OnItemClickListener
 
 class MainCategoryAdapter(
     private var itemList: MutableList<Item>,
+    private val onItemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    /*========================================================================
+        OVERRIDDEN METHODS
+    =========================================================================*/
     override fun getItemViewType(position: Int): Int {
         return when (itemList[position].viewType) {
             Item.LIST_BANNER -> R.layout.layout_banner
@@ -72,9 +77,6 @@ class MainCategoryAdapter(
             is BestSellerViewHolder -> {
                 itemList[position].recyclerItemList?.let {
                     holder.bindBestSellerView(it)
-                    holder.itemView.setOnClickListener {
-
-                    }
                 }
             }
 
@@ -89,12 +91,12 @@ class MainCategoryAdapter(
     /*========================================================================
         FUNCTIONS
     =========================================================================*/
-    @SuppressLint("NotifyDataSetChanged")
-    fun updateData(dataList: List<Item>) {
-        itemList.clear()
-        itemList.addAll(dataList)
-        notifyDataSetChanged()
-    }
+//    @SuppressLint("NotifyDataSetChanged")
+//    fun updateData(dataList: List<Item>) {
+//        itemList.clear()
+//        itemList.addAll(dataList)
+//        notifyDataSetChanged()
+//    }
 
     /*========================================================================
         OVERRIDDEN METHODS
@@ -102,7 +104,7 @@ class MainCategoryAdapter(
     inner class BannerViewHolder(private val binding: LayoutBannerBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bindBannerView(banners: ArrayList<Banner>) {
-            val adapter = BannerAdapter(banners)
+            val adapter = BannerAdapter(banners, onItemClickListener)
             binding.viewPager2.adapter = adapter
             binding.dotsIndicator.attachTo(binding.viewPager2)
         }
@@ -119,7 +121,7 @@ class MainCategoryAdapter(
         @SuppressLint("SetTextI18n")
         fun bindBestSellerView(products: List<Product>) {
             binding.title.text = "Best seller"
-            val adapter = ChildAdapter(Item.BEST_SELLER, products)
+            val adapter = ChildAdapter(Item.BEST_SELLER, products, onItemClickListener)
             binding.rclHorizontal.adapter = adapter
         }
     }
@@ -137,7 +139,7 @@ class MainCategoryAdapter(
         @SuppressLint("SetTextI18n")
         fun bindProductView(products: List<Product>) {
             binding.title.text = "Product"
-            val adapter = ChildAdapter(Item.LIST_PRODUCT, products)
+            val adapter = ChildAdapter(Item.LIST_PRODUCT, products, onItemClickListener)
             binding.rclVertical.adapter = adapter
         }
     }

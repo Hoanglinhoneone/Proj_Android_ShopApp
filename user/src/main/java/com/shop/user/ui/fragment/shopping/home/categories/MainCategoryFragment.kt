@@ -1,20 +1,25 @@
 package com.shop.user.ui.fragment.shopping.home.categories
 
+import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.shop.user.R
-import com.shop.user.data.model.Banner
 import com.shop.user.data.model.Item
-import com.shop.user.data.model.Product
 import com.shop.user.databinding.FragmentMainCategoryBinding
+import com.shop.user.ui.OnItemClickListener
 import com.shop.user.ui.adapter.home.MainCategoryAdapter
+import com.shop.user.ui.common.showSnackBarShort
 import com.shop.user.ui.fragment.BaseFragment
+import com.shop.user.ui.fragment.shopping.home.HomeFragmentDirections
 import com.shop.user.viewmodel.home.MainCategoryViewModel
 import timber.log.Timber
 
 
 class MainCategoryFragment :
-    BaseFragment<FragmentMainCategoryBinding>(FragmentMainCategoryBinding::inflate) {
+    BaseFragment<FragmentMainCategoryBinding>(FragmentMainCategoryBinding::inflate),
+    OnItemClickListener {
     /*========================================================================
              VARIABLES
     =========================================================================*/
@@ -39,7 +44,7 @@ class MainCategoryFragment :
         Timber.i("observeData")
         val dataList = mutableListOf<Item>()
         viewModel.dataList.observe(viewLifecycleOwner) {
-            adapter = MainCategoryAdapter(it)
+            adapter = MainCategoryAdapter(it, this)
             binding.recyclerview.adapter = adapter
         }
         viewModel.banners.observe(viewLifecycleOwner) { banners ->
@@ -59,53 +64,40 @@ class MainCategoryFragment :
         }
     }
 
+    override fun onItemClick(position: Int, viewType: Int) {
+        Timber.d("onItemClick: $position, $viewType")
+        when (viewType) {
+            Item.LIST_BANNER -> {
+                Timber.d("Banner clicked")
+//                toastShort("Banner clicked", requireContext())
+                showSnackBarShort("Banner clicked", binding.root)
+            }
+
+            Item.BEST_SELLER -> {
+                Timber.d("Best seller clicked")
+//                toastShort("Best seller clicked", requireContext())
+//                Toast.makeText(context, "Best seller clicked", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Best seller clicked", Toast.LENGTH_SHORT).show()
+                showSnackBarShort("Best seller clicked", binding.root)
+                val productId = 1
+                val bundle = Bundle().apply {
+                    putInt("productId", productId)
+                }
+                val action = HomeFragmentDirections.actionHomeFragmentToProductDetailFragment()
+                findNavController().navigate(R.id.action_homeFragment_to_productDetailFragment, bundle)
+            }
+
+            else -> {
+                Timber.d("Product clicked")
+//                toastShort("Product clicked", requireContext())
+//                Toast.makeText(context, "Product clicked", Toast.LENGTH_SHORT).show()
+                showSnackBarShort("Product clicked", binding.root)
+                findNavController().navigate(R.id.action_homeFragment_to_productDetailFragment)
+            }
+        }
+    }
+
     /*========================================================================
           FUNCTIONS
      =========================================================================*/
-    private fun prepareData() {
-        val bannerList = ArrayList<Banner>()
-        bannerList.add(Banner(R.drawable.nikon_canon_offer))
-        bannerList.add(Banner(R.drawable.offer_shoping))
-        bannerList.add(Banner(R.drawable.tv_offer))
-
-        // best seller
-        val bestSellerList = ArrayList<Product>()
-        bestSellerList.add(Product(R.drawable.bags, "Up to 20% off"))
-        bestSellerList.add(Product(R.drawable.mobiles, "Up to 10% off"))
-        bestSellerList.add(Product(R.drawable.watches, "Up to 40% off"))
-        bestSellerList.add(Product(R.drawable.bags, "Up to 20% off"))
-        bestSellerList.add(Product(R.drawable.mobiles, "Up to 10% off"))
-        bestSellerList.add(Product(R.drawable.watches, "Up to 40% off"))
-
-        //clothing
-        val clothingList = ArrayList<Product>()
-        clothingList.add(Product(R.drawable.levis_clothing, "Up to 25% off"))
-        clothingList.add(Product(R.drawable.women_clothing, "Up to 30% off"))
-        clothingList.add(Product(R.drawable.nikeshoes, "Up to 35% off"))
-        clothingList.add(Product(R.drawable.levis_clothing, "Up to 25% off"))
-        clothingList.add(Product(R.drawable.women_clothing, "Up to 30% off"))
-        clothingList.add(Product(R.drawable.nikeshoes, "Up to 35% off"))
-        clothingList.add(Product(R.drawable.levis_clothing, "Up to 25% off"))
-        clothingList.add(Product(R.drawable.women_clothing, "Up to 30% off"))
-        clothingList.add(Product(R.drawable.nikeshoes, "Up to 35% off"))
-        clothingList.add(Product(R.drawable.levis_clothing, "Up to 25% off"))
-        clothingList.add(Product(R.drawable.women_clothing, "Up to 30% off"))
-        clothingList.add(Product(R.drawable.nikeshoes, "Up to 35% off"))
-        clothingList.add(Product(R.drawable.levis_clothing, "Up to 25% off"))
-        clothingList.add(Product(R.drawable.women_clothing, "Up to 30% off"))
-        clothingList.add(Product(R.drawable.nikeshoes, "Up to 35% off"))
-        clothingList.add(Product(R.drawable.levis_clothing, "Up to 25% off"))
-        clothingList.add(Product(R.drawable.women_clothing, "Up to 30% off"))
-        clothingList.add(Product(R.drawable.nikeshoes, "Up to 35% off"))
-        clothingList.add(Product(R.drawable.levis_clothing, "Up to 25% off"))
-        clothingList.add(Product(R.drawable.women_clothing, "Up to 30% off"))
-        clothingList.add(Product(R.drawable.nikeshoes, "Up to 35% off"))
-        clothingList.add(Product(R.drawable.levis_clothing, "Up to 25% off"))
-        clothingList.add(Product(R.drawable.women_clothing, "Up to 30% off"))
-        clothingList.add(Product(R.drawable.nikeshoes, "Up to 35% off"))
-
-//        dataList.add(Item(Item.LIST_BANNER, bannerList))
-//        dataList.add(Item(Item.BEST_SELLER, bestSellerList.asReversed()))
-//        dataList.add(Item(Item.LIST_PRODUCT, clothingList))
-    }
 }

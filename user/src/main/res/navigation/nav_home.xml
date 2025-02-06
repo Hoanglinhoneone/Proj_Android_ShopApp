@@ -3,17 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_home"
-    app:startDestination="@id/homeFragment2">
+    app:startDestination="@id/fragment_home_parent">
 
     <fragment
-        android:id="@+id/homeFragment2"
+        android:id="@+id/fragment_home_parent"
         android:name="com.shop.user.ui.fragment.shopping.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home_parent">
         <action
-            android:id="@+id/action_homeFragment2_to_productDetailFragment"
-            app:destination="@id/productDetailFragment" />
+            android:id="@+id/action_homeFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment">
+            <argument
+                android:name="productId"
+                app:argType="integer"
+                android:defaultValue="0" />
+        </action>
+
     </fragment>
+
     <fragment
         android:id="@+id/productDetailFragment"
         android:name="com.shop.user.ui.fragment.shopping.home.ProductDetailFragment"

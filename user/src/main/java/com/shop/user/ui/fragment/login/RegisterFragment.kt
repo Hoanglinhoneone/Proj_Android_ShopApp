@@ -99,7 +99,5 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
     }
 
     override fun observeData() {
-//        TODO("Not yet implemented")
     }
-
 }

@@ -7,31 +7,18 @@ import com.shop.user.data.model.Item
 import com.shop.user.data.model.Product
 import com.shop.user.databinding.ItemBestSellerBinding
 import com.shop.user.databinding.ItemProductBinding
+import com.shop.user.ui.OnItemClickListener
 
 class ChildAdapter(
-    private val viewType: Int, private val productList: List<Product>
+    private val viewType: Int,
+    private val productList: List<Product>,
+    private val onItemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    inner class BestSellerViewHolder(private val binding: ItemBestSellerBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bindBestSellerView(productList: Product) {
-            binding.bestSellerImage.setImageResource(productList.image)
-            binding.bestSellerText.text = productList.offer
-        }
-
-    }
-
+    /*========================================================================
+        OVERRIDDEN METHODS
+    =========================================================================*/
     override fun getItemViewType(position: Int): Int {
         return viewType
-    }
-
-    inner class ClothingViewHolder(private val binding: ItemProductBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bindClothingView(productList: Product) {
-            binding.clothingImage.setImageResource(productList.image)
-            binding.clothingOfferTv.text = productList.offer
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -59,11 +46,37 @@ class ChildAdapter(
         when (holder) {
             is BestSellerViewHolder -> {
                 holder.bindBestSellerView(productList[position])
+                holder.itemView.setOnClickListener {
+                    onItemClickListener.onItemClick(position, viewType)
+                }
             }
 
             else -> {
                 (holder as ClothingViewHolder).bindClothingView(productList[position])
+                holder.itemView.setOnClickListener {
+                    onItemClickListener.onItemClick(position, viewType)
+                }
             }
+        }
+    }
+
+    /*========================================================================
+        INNER CLASSES
+    =========================================================================*/
+    inner class BestSellerViewHolder(private val binding: ItemBestSellerBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bindBestSellerView(productList: Product) {
+            binding.bestSellerImage.setImageResource(productList.image)
+            binding.bestSellerText.text = productList.offer
+        }
+    }
+
+    inner class ClothingViewHolder(private val binding: ItemProductBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bindClothingView(productList: Product) {
+            binding.clothingImage.setImageResource(productList.image)
+            binding.clothingOfferTv.text = productList.offer
         }
     }
 }
