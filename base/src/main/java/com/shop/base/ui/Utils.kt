@@ -3,22 +3,19 @@ package com.shop.base.ui
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import com.google.android.material.snackbar.Snackbar
 
 fun showToast(context: Context, message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
 
-fun showSnackBar(view : View, message: String) {
+fun showSnackBar(view: View, message: String) {
     Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
 }
 
-@RequiresApi(Build.VERSION_CODES.M)
 fun isNetWorkConnected(context: Context): Boolean {
     val connectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

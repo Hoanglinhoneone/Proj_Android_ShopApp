@@ -12,7 +12,6 @@ import com.shop.user.ui.OnItemClickListener
 import com.shop.user.ui.adapter.home.MainCategoryAdapter
 import com.shop.user.ui.common.showSnackBarShort
 import com.shop.user.ui.fragment.BaseFragment
-import com.shop.user.ui.fragment.shopping.home.HomeFragmentDirections
 import com.shop.user.viewmodel.home.MainCategoryViewModel
 import timber.log.Timber
 
@@ -83,8 +82,11 @@ class MainCategoryFragment :
                 val bundle = Bundle().apply {
                     putInt("productId", productId)
                 }
-                val action = HomeFragmentDirections.actionHomeFragmentToProductDetailFragment()
-                findNavController().navigate(R.id.action_homeFragment_to_productDetailFragment, bundle)
+//                val action = HomeFragmentDirections.actionHomeFragmentToProductDetailFragment()
+                findNavController().navigate(
+                    R.id.action_homeFragment_to_productDetailFragment,
+                    bundle
+                )
             }
 
             else -> {

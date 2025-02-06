@@ -3,7 +3,6 @@ package com.shop.user.ui.fragment.shopping.home
 import android.annotation.SuppressLint
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.shop.user.databinding.FragmentProductDetailBinding
 import com.shop.user.ui.fragment.BaseFragment
 import com.shop.user.viewmodel.home.ProductDetailViewModel
