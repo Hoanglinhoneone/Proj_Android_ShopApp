@@ -31,10 +31,8 @@ class MainCategoryFragment :
     override fun initView() {
         Timber.i("initView")
         binding.recyclerview.setHasFixedSize(true)
-        viewModel.fetchBanners()
-        viewModel.fetchBestSeller()
-        viewModel.fetchProducts()
 //        prepareData()
+
         binding.recyclerview.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     }
@@ -48,17 +46,17 @@ class MainCategoryFragment :
         }
         viewModel.banners.observe(viewLifecycleOwner) { banners ->
             Timber.d("banners: $banners")
-            dataList.add(Item(Item.LIST_BANNER, banners))
+            dataList.add(Item(Item.LIST_BANNER, banners = banners))
             viewModel.dataList.value = dataList
         }
         viewModel.bestSeller.observe(viewLifecycleOwner) { bestSeller ->
             Timber.d("bestSeller: $bestSeller")
-            dataList.add(Item(Item.BEST_SELLER, bestSeller))
+            dataList.add(Item(Item.BEST_SELLER, bestSellers = bestSeller))
             viewModel.dataList.value = dataList
         }
         viewModel.products.observe(viewLifecycleOwner) { products ->
             Timber.d("products: $products")
-            dataList.add(Item(Item.LIST_PRODUCT, products))
+            dataList.add(Item(Item.LIST_PRODUCT,products = products))
             viewModel.dataList.value = dataList
         }
     }
@@ -68,21 +66,17 @@ class MainCategoryFragment :
         when (viewType) {
             Item.LIST_BANNER -> {
                 Timber.d("Banner clicked")
-//                toastShort("Banner clicked", requireContext())
                 showSnackBarShort("Banner clicked", binding.root)
             }
 
             Item.BEST_SELLER -> {
                 Timber.d("Best seller clicked")
-//                toastShort("Best seller clicked", requireContext())
-//                Toast.makeText(context, "Best seller clicked", Toast.LENGTH_SHORT).show()
                 Toast.makeText(context, "Best seller clicked", Toast.LENGTH_SHORT).show()
                 showSnackBarShort("Best seller clicked", binding.root)
                 val productId = 1
                 val bundle = Bundle().apply {
                     putInt("productId", productId)
                 }
-//                val action = HomeFragmentDirections.actionHomeFragmentToProductDetailFragment()
                 findNavController().navigate(
                     R.id.action_homeFragment_to_productDetailFragment,
                     bundle
@@ -91,10 +85,8 @@ class MainCategoryFragment :
 
             else -> {
                 Timber.d("Product clicked")
-//                toastShort("Product clicked", requireContext())
-//                Toast.makeText(context, "Product clicked", Toast.LENGTH_SHORT).show()
                 showSnackBarShort("Product clicked", binding.root)
-                findNavController().navigate(R.id.action_homeFragment_to_productDetailFragment)
+//                findNavController().navigate(R.id.action_homeFragment_to_productDetailFragment)
             }
         }
     }

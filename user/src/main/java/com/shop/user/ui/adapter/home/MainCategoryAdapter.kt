@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.shop.user.R
 import com.shop.user.data.model.Banner
+import com.shop.user.data.model.BestSeller
 import com.shop.user.data.model.Item
 import com.shop.user.data.model.Product
 import com.shop.user.databinding.ItemRecyclerviewHorizontalBinding
@@ -75,13 +76,13 @@ class MainCategoryAdapter(
             }
 
             is BestSellerViewHolder -> {
-                itemList[position].recyclerItemList?.let {
+                itemList[position].bestSellers?.let {
                     holder.bindBestSellerView(it)
                 }
             }
 
             is ProductViewHolder -> {
-                itemList[position].recyclerItemList?.let {
+                itemList[position].products?.let {
                     holder.bindProductView(it)
                 }
             }
@@ -103,7 +104,7 @@ class MainCategoryAdapter(
     =========================================================================*/
     inner class BannerViewHolder(private val binding: LayoutBannerBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bindBannerView(banners: ArrayList<Banner>) {
+        fun bindBannerView(banners: List<Banner>) {
             val adapter = BannerAdapter(banners, onItemClickListener)
             binding.viewPager2.adapter = adapter
             binding.dotsIndicator.attachTo(binding.viewPager2)
@@ -119,9 +120,9 @@ class MainCategoryAdapter(
         }
 
         @SuppressLint("SetTextI18n")
-        fun bindBestSellerView(products: List<Product>) {
+        fun bindBestSellerView(bestSellers: List<BestSeller>) {
             binding.title.text = "Best seller"
-            val adapter = ChildAdapter(Item.BEST_SELLER, products, onItemClickListener)
+            val adapter = BestSellerAdapter(Item.BEST_SELLER, bestSellers, onItemClickListener)
             binding.rclHorizontal.adapter = adapter
         }
     }
@@ -139,7 +140,7 @@ class MainCategoryAdapter(
         @SuppressLint("SetTextI18n")
         fun bindProductView(products: List<Product>) {
             binding.title.text = "Product"
-            val adapter = ChildAdapter(Item.LIST_PRODUCT, products, onItemClickListener)
+            val adapter = ProductAdapter(Item.LIST_PRODUCT, products, onItemClickListener)
             binding.rclVertical.adapter = adapter
         }
     }

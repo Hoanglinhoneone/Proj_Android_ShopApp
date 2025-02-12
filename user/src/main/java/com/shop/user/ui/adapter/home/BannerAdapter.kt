@@ -11,7 +11,7 @@ import com.shop.user.data.model.Item
 import com.shop.user.ui.OnItemClickListener
 
 class BannerAdapter(
-    private val listBanner: ArrayList<Banner>,
+    private val listBanner: List<Banner>,
     private val onItemClickListener: OnItemClickListener
     ) :
     RecyclerView.Adapter<BannerAdapter.BannerViewHolder>() {

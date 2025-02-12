@@ -3,101 +3,59 @@ package com.shop.user.viewmodel.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.shop.user.R
+import androidx.lifecycle.viewModelScope
+import com.shop.user.common.MyApplication
+import com.shop.user.data.datasource.DataSource
 import com.shop.user.data.model.Banner
+import com.shop.user.data.model.BestSeller
 import com.shop.user.data.model.Item
 import com.shop.user.data.model.Product
+import com.shop.user.data.repository.BannerRepository
+import com.shop.user.data.repository.BestSellerRepository
+import com.shop.user.data.repository.ProductRepository
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class MainCategoryViewModel : ViewModel() {
     /*========================================================================
         VARIABLES
     =========================================================================*/
-    private val _banners = MutableLiveData<ArrayList<Banner>>()
-    val banners: LiveData<ArrayList<Banner>> = _banners
+    private val productDao = MyApplication.appDatabase.productDao()
+    private val productRepository = ProductRepository(productDao)
 
-    private val _bestSeller = MutableLiveData<List<Product>>()
-    val bestSeller: LiveData<List<Product>> = _bestSeller
+    private val bannerDao = MyApplication.appDatabase.bannerDao()
+    private val bannerRepository = BannerRepository(bannerDao)
 
-    private val _products = MutableLiveData<List<Product>>()
-    val products: LiveData<List<Product>> = _products
+    private val bestSellerDao = MyApplication.appDatabase.bestSellerDao()
+    private val bestSellerRepository = BestSellerRepository(bestSellerDao)
+
+    val banners: LiveData<List<Banner>> = bannerRepository.getBanners()
+
+    val bestSeller: LiveData<List<BestSeller>> = bestSellerRepository.getBestSellers()
+
+    val products: LiveData<List<Product>> = productRepository.getAllProducts()
 
     private val _dataList = MutableLiveData<MutableList<Item>>()
     val dataList: MutableLiveData<MutableList<Item>> = _dataList
 
+    init {
+        viewModelScope.launch {
+            if (productRepository.countProducts() == 0) {
+                Timber.i("save data product into room")
+                productRepository.insertProducts(DataSource.getProducts)
+            }
+            if (bannerRepository.countBanners() == 0) {
+                Timber.i("save data banner into room")
+                bannerRepository.insertBanners(DataSource.getBanners)
+            }
+            if (bestSellerRepository.countBestSellers() == 0) {
+                Timber.i("save data best seller into room")
+                bestSellerRepository.insertBestSellers(DataSource.getBestSeller)
+            }
+        }
+    }
 
     /*========================================================================
         FUNCTIONS
     =========================================================================*/
-    fun fetchBanners() {
-        Timber.i("get Banners")
-        val bannerList = arrayListOf(
-            Banner(R.drawable.nikon_canon_offer),
-            Banner(R.drawable.offer_shoping),
-            Banner(R.drawable.tv_offer)
-        )
-        updateBanners(bannerList)
-    }
-
-    fun fetchBestSeller() {
-        Timber.i("get Best Seller")
-        val bestSellerList = listOf(
-            Product(R.drawable.bags, "Up to 20% off"),
-            Product(R.drawable.mobiles, "Up to 10% off"),
-            Product(R.drawable.watches, "Up to 40% off"),
-            Product(R.drawable.bags, "Up to 20% off"),
-            Product(R.drawable.bags, "Up to 20% off"),
-            Product(R.drawable.mobiles, "Up to 10% off"),
-            Product(R.drawable.watches, "Up to 40% off"),
-            Product(R.drawable.bags, "Up to 20% off")
-        )
-        updateBestSeller(bestSellerList)
-    }
-
-    fun fetchProducts() {
-        Timber.i("get Products")
-        val productList = listOf(
-            Product(R.drawable.levis_clothing, "Up to 25% off"),
-            Product(R.drawable.women_clothing, "Up to 30% off"),
-            Product(R.drawable.nikeshoes, "Up to 35% off"),
-            Product(R.drawable.women_clothing, "Up to 30% off"),
-            Product(R.drawable.nikeshoes, "Up to 35% off"),
-            Product(R.drawable.levis_clothing, "Up to 25% off"),
-            Product(R.drawable.women_clothing, "Up to 30% off"),
-            Product(R.drawable.nikeshoes, "Up to 35% off"),
-            Product(R.drawable.levis_clothing, "Up to 25% off"),
-            Product(R.drawable.women_clothing, "Up to 30% off"),
-            Product(R.drawable.nikeshoes, "Up to 35% off"),
-            Product(R.drawable.women_clothing, "Up to 30% off"),
-            Product(R.drawable.nikeshoes, "Up to 35% off"),
-            Product(R.drawable.levis_clothing, "Up to 25% off"),
-            Product(R.drawable.women_clothing, "Up to 30% off"),
-            Product(R.drawable.nikeshoes, "Up to 35% off"),
-            Product(R.drawable.levis_clothing, "Up to 25% off"),
-            Product(R.drawable.women_clothing, "Up to 30% off"),
-            Product(R.drawable.nikeshoes, "Up to 35% off"),
-            Product(R.drawable.women_clothing, "Up to 30% off"),
-            Product(R.drawable.nikeshoes, "Up to 35% off"),
-            Product(R.drawable.levis_clothing, "Up to 25% off"),
-            Product(R.drawable.women_clothing, "Up to 30% off"),
-            Product(R.drawable.nikeshoes, "Up to 35% off"),
-        )
-
-        updateProducts(productList)
-    }
-
-    private fun updateBanners(banners: ArrayList<Banner>) {
-        Timber.i("update Banners: $banners")
-        _banners.postValue(banners)
-    }
-
-    private fun updateBestSeller(bestSeller: List<Product>) {
-        Timber.i("update Best Seller: $bestSeller")
-        _bestSeller.postValue(bestSeller)
-    }
-
-    private fun updateProducts(products: List<Product>) {
-        Timber.i("update Products: $products")
-        _products.postValue(products)
-    }
 }

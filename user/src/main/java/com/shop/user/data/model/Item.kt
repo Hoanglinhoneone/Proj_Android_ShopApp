@@ -1,17 +1,14 @@
 package com.shop.user.data.model
 
-data class Item(val viewType: Int) {
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-    var recyclerItemList: List<Product>? = null
-    var banners: ArrayList<Banner>? = null
-
-    constructor(viewType: Int, recyclerItemList: List<Product>) : this(viewType) {
-        this.recyclerItemList = recyclerItemList
-    }
-
-    constructor(viewType: Int, banners: ArrayList<Banner>) : this(viewType) {
-        this.banners = banners
-    }
+data class Item(
+    val viewType: Int,
+    val products: List<Product>? = null,
+    val bestSellers: List<BestSeller>? = null,
+    val banners: List<Banner>? = null) {
 
     companion object {
         const val LIST_BANNER = 0
@@ -19,6 +16,21 @@ data class Item(val viewType: Int) {
         const val LIST_PRODUCT = 2
     }
 }
+@Entity(tableName = "products")
+data class Product(
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @ColumnInfo val image: Int,
+    @ColumnInfo val offer: String)
 
-data class Product(val image: Int, val offer: String)
-data class Banner(val image: Int)
+@Entity(tableName = "best_seller")
+data class BestSeller(
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @ColumnInfo val image: Int,
+    @ColumnInfo val offer: String
+)
+
+@Entity(tableName = "banners")
+data class Banner(
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @ColumnInfo val image: Int
+)
