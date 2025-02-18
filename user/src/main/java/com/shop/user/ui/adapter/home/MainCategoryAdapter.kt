@@ -24,7 +24,7 @@ class MainCategoryAdapter(
         OVERRIDDEN METHODS
     =========================================================================*/
     override fun getItemViewType(position: Int): Int {
-        return when (itemList[position].viewType) {
+        return when (position) {
             Item.LIST_BANNER -> R.layout.layout_banner
             Item.BEST_SELLER -> R.layout.item_best_seller
             Item.LIST_PRODUCT -> R.layout.item_product
@@ -64,7 +64,7 @@ class MainCategoryAdapter(
     }
 
     override fun getItemCount(): Int {
-        return itemList.size
+        return 3
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

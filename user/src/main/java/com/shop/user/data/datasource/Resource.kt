@@ -1,5 +1,8 @@
 package com.shop.user.data.datasource
 
+import com.shop.user.data.model.Banner
+import kotlinx.coroutines.flow.Flow
+
 sealed class Resource<T>(
     val data: T? = null,
     val message: String? = null

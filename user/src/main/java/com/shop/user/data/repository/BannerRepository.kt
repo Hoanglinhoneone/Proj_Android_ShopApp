@@ -1,8 +1,8 @@
 package com.shop.user.data.repository
 
-import androidx.lifecycle.LiveData
 import com.shop.user.data.local.dao.BannerDao
 import com.shop.user.data.model.Banner
+import kotlinx.coroutines.flow.Flow
 
 class BannerRepository(private val bannerDao: BannerDao) {
     suspend fun countBanners(): Int {
@@ -13,7 +13,7 @@ class BannerRepository(private val bannerDao: BannerDao) {
         bannerDao.insertBanners(banners)
     }
 
-    fun getBanners(): LiveData<List<Banner>> {
+    fun getBanners(): Flow<List<Banner>> {
         return bannerDao.getBanners()
     }
 }

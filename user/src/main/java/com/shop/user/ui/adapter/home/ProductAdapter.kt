@@ -34,8 +34,10 @@ class ProductAdapter(
 
     override fun onBindViewHolder(holder: ProductAdapter.ProductViewHolder, position: Int) {
         holder.bindProductView(productList[position])
-        onItemClickListener.onItemClick(productList[position].id, viewType)
-    }
+        holder.itemView.setOnClickListener {
+            onItemClickListener.onItemClick(productList[position].id, viewType)
+        }
+  }
 
     /*========================================================================
         INNER CLASSES

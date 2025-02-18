@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.shop.user.data.model.Product
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProductDao {
@@ -16,5 +17,5 @@ interface ProductDao {
     suspend fun countProducts(): Int
 
     @Query("SELECT * FROM products")
-    fun getAllProducts(): LiveData<List<Product>>
+    fun getAllProducts(): Flow<List<Product>>
 }

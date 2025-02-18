@@ -3,6 +3,7 @@ package com.shop.user.ui.fragment.shopping.home.categories
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.shop.user.R
@@ -13,6 +14,8 @@ import com.shop.user.ui.adapter.home.MainCategoryAdapter
 import com.shop.user.ui.common.showSnackBarShort
 import com.shop.user.ui.fragment.BaseFragment
 import com.shop.user.viewmodel.home.MainCategoryViewModel
+import com.shop.user.viewmodel.home.UiState
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 
@@ -44,20 +47,76 @@ class MainCategoryFragment :
             adapter = MainCategoryAdapter(it, this)
             binding.recyclerview.adapter = adapter
         }
-        viewModel.banners.observe(viewLifecycleOwner) { banners ->
-            Timber.d("banners: $banners")
-            dataList.add(Item(Item.LIST_BANNER, banners = banners))
-            viewModel.dataList.value = dataList
+//        lifecycleScope.launch {
+//            viewModel.banners.collect { banners ->
+//                Timber.d("banners: $banners")
+//                dataList.add(Item(Item.LIST_BANNER, banners = banners))
+//                viewModel.dataList.value = dataList
+//            }
+//        }
+        lifecycleScope.launch {
+            viewModel.bannerState.collect { state ->
+                when (state) {
+                    is UiState.Loading -> {
+                        Timber.i("Loading")
+                    }
+
+                    is UiState.Success -> {
+                        state.data.collect { banners ->
+                            Timber.d("Loading success banners: $banners")
+                            dataList.add(Item(Item.LIST_BANNER, banners = banners))
+                            viewModel.dataList.value = dataList
+                        }
+                    }
+
+                    is UiState.Error -> {
+                        Timber.d("Error: ${state.exception}")
+                    }
+                }
+            }
         }
-        viewModel.bestSeller.observe(viewLifecycleOwner) { bestSeller ->
-            Timber.d("bestSeller: $bestSeller")
-            dataList.add(Item(Item.BEST_SELLER, bestSellers = bestSeller))
-            viewModel.dataList.value = dataList
+        lifecycleScope.launch {
+            viewModel.bestSellerState.collect { state ->
+                when (state) {
+                    is UiState.Loading -> {
+                        Timber.i("Loading")
+                    }
+                    is UiState.Success -> {
+                        state.data.collect { bestSellers ->
+                            Timber.d("Loading success")
+                            dataList.add(Item(Item.BEST_SELLER, bestSellers = bestSellers))
+                            viewModel.dataList.value = dataList
+                        }
+                    }
+                    is UiState.Error -> {
+                        Timber.d("Error: ${state.exception}")
+                    }
+                }
+            }
         }
-        viewModel.products.observe(viewLifecycleOwner) { products ->
-            Timber.d("products: $products")
-            dataList.add(Item(Item.LIST_PRODUCT,products = products))
-            viewModel.dataList.value = dataList
+//        viewModel.bestSeller.observe(viewLifecycleOwner) { bestSeller ->
+//            Timber.d("bestSeller: $bestSeller")
+//            dataList.add(Item(Item.BEST_SELLER, bestSellers = bestSeller))
+//            viewModel.dataList.value = dataList
+//        }
+        lifecycleScope.launch {
+            viewModel.productState.collect { state ->
+                when (state) {
+                    is UiState.Loading -> {
+                        Timber.i("Loading")
+                    }
+                    is UiState.Success -> {
+                        state.data.collect { products ->
+                            Timber.d("Loading success")
+                            dataList.add(Item(Item.LIST_PRODUCT, products = products))
+                            viewModel.dataList.value = dataList
+                        }
+                    }
+                    is UiState.Error -> {
+                        Timber.d("Error: ${state.exception}")
+                    }
+                }
+            }
         }
     }
 
