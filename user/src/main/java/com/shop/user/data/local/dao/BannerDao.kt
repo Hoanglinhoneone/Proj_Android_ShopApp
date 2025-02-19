@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.shop.user.data.datasource.Resource
 import com.shop.user.data.model.Banner
 import kotlinx.coroutines.flow.Flow
 
