@@ -24,7 +24,7 @@ class MainCategoryAdapter(
         OVERRIDDEN METHODS
     =========================================================================*/
     override fun getItemViewType(position: Int): Int {
-        return when (position) {
+        return when (itemList[position].viewType) {
             Item.LIST_BANNER -> R.layout.layout_banner
             Item.BEST_SELLER -> R.layout.item_best_seller
             Item.LIST_PRODUCT -> R.layout.item_product
@@ -64,7 +64,7 @@ class MainCategoryAdapter(
     }
 
     override fun getItemCount(): Int {
-        return 3
+        return itemList.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -143,5 +143,12 @@ class MainCategoryAdapter(
             val adapter = ProductAdapter(Item.LIST_PRODUCT, products, onItemClickListener)
             binding.rclVertical.adapter = adapter
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateData(newList: List<Item>) {
+        itemList.clear()
+        itemList.addAll(newList)
+        notifyDataSetChanged()
     }
 }

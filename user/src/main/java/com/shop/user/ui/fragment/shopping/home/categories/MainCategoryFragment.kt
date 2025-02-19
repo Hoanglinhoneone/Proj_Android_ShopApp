@@ -3,7 +3,9 @@ package com.shop.user.ui.fragment.shopping.home.categories
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.shop.user.R
@@ -14,10 +16,9 @@ import com.shop.user.ui.adapter.home.MainCategoryAdapter
 import com.shop.user.ui.common.showSnackBarShort
 import com.shop.user.ui.fragment.BaseFragment
 import com.shop.user.viewmodel.home.MainCategoryViewModel
-import com.shop.user.viewmodel.home.UiState
+import com.shop.user.viewmodel.home.State
 import kotlinx.coroutines.launch
 import timber.log.Timber
-
 
 class MainCategoryFragment :
     BaseFragment<FragmentMainCategoryBinding>(FragmentMainCategoryBinding::inflate),
@@ -26,7 +27,9 @@ class MainCategoryFragment :
              VARIABLES
     =========================================================================*/
     private val viewModel by viewModels<MainCategoryViewModel>()
-    private lateinit var adapter: MainCategoryAdapter
+    private val adapter: MainCategoryAdapter by lazy {
+        MainCategoryAdapter(mutableListOf(), this)
+    }
 
     /*========================================================================
      OVERRIDDEN METHODS
@@ -34,86 +37,42 @@ class MainCategoryFragment :
     override fun initView() {
         Timber.i("initView")
         binding.recyclerview.setHasFixedSize(true)
-//        prepareData()
-
         binding.recyclerview.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     }
 
     override fun observeData() {
         Timber.i("observeData")
-        val dataList = mutableListOf<Item>()
         viewModel.dataList.observe(viewLifecycleOwner) {
-            adapter = MainCategoryAdapter(it, this)
+            adapter.updateData(it)
             binding.recyclerview.adapter = adapter
         }
-//        lifecycleScope.launch {
-//            viewModel.banners.collect { banners ->
-//                Timber.d("banners: $banners")
-//                dataList.add(Item(Item.LIST_BANNER, banners = banners))
-//                viewModel.dataList.value = dataList
-//            }
-//        }
         lifecycleScope.launch {
-            viewModel.bannerState.collect { state ->
-                when (state) {
-                    is UiState.Loading -> {
-                        Timber.i("Loading")
-                    }
+            val newList = mutableListOf<Item>()
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+                viewModel.uiState.collect { uiState ->
+                    when (uiState) {
+                        is State.Loading -> {
+                            showLoading(true)
+                        }
 
-                    is UiState.Success -> {
-                        state.data.collect { banners ->
-                            Timber.d("Loading success banners: $banners")
-                            dataList.add(Item(Item.LIST_BANNER, banners = banners))
-                            viewModel.dataList.value = dataList
+                        is State.Success -> {
+                            Timber.d("Loading success")
+                            val banners = uiState.banners
+                            val bestSellers = uiState.bestSellers
+                            val products = uiState.products
+                            newList.add(Item(Item.LIST_BANNER, banners = banners))
+                            newList.add(Item(Item.BEST_SELLER, bestSellers = bestSellers))
+                            newList.add(Item(Item.LIST_PRODUCT, products = products))
+                            updateDataList(newList)
+                            showLoading(false)
+                            Timber.d("banner size = ${banners.size}, best seller size = ${bestSellers.size}, product size = ${products.size}")
                         }
-                    }
 
-                    is UiState.Error -> {
-                        Timber.d("Error: ${state.exception}")
-                    }
-                }
-            }
-        }
-        lifecycleScope.launch {
-            viewModel.bestSellerState.collect { state ->
-                when (state) {
-                    is UiState.Loading -> {
-                        Timber.i("Loading")
-                    }
-                    is UiState.Success -> {
-                        state.data.collect { bestSellers ->
-                            Timber.d("Loading success")
-                            dataList.add(Item(Item.BEST_SELLER, bestSellers = bestSellers))
-                            viewModel.dataList.value = dataList
+                        is State.Error -> {
+                            showLoading(false)
+                            Timber.d("Error: ${uiState.message}")
                         }
-                    }
-                    is UiState.Error -> {
-                        Timber.d("Error: ${state.exception}")
-                    }
-                }
-            }
-        }
-//        viewModel.bestSeller.observe(viewLifecycleOwner) { bestSeller ->
-//            Timber.d("bestSeller: $bestSeller")
-//            dataList.add(Item(Item.BEST_SELLER, bestSellers = bestSeller))
-//            viewModel.dataList.value = dataList
-//        }
-        lifecycleScope.launch {
-            viewModel.productState.collect { state ->
-                when (state) {
-                    is UiState.Loading -> {
-                        Timber.i("Loading")
-                    }
-                    is UiState.Success -> {
-                        state.data.collect { products ->
-                            Timber.d("Loading success")
-                            dataList.add(Item(Item.LIST_PRODUCT, products = products))
-                            viewModel.dataList.value = dataList
-                        }
-                    }
-                    is UiState.Error -> {
-                        Timber.d("Error: ${state.exception}")
                     }
                 }
             }
@@ -145,7 +104,7 @@ class MainCategoryFragment :
             else -> {
                 Timber.d("Product clicked")
                 showSnackBarShort("Product clicked", binding.root)
-//                findNavController().navigate(R.id.action_homeFragment_to_productDetailFragment)
+                findNavController().navigate(R.id.action_homeFragment_to_productDetailFragment)
             }
         }
     }
@@ -153,4 +112,15 @@ class MainCategoryFragment :
     /*========================================================================
           FUNCTIONS
      =========================================================================*/
+    private fun updateDataList(newList: MutableList<Item>) {
+        viewModel.dataList.value = newList
+    }
+
+    private fun showLoading(show: Boolean) {
+        if (show) {
+            binding.loading.visibility = android.view.View.VISIBLE
+        } else {
+            binding.loading.visibility = android.view.View.GONE
+        }
+    }
 }

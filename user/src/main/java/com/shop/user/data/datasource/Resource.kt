@@ -1,6 +1,5 @@
 package com.shop.user.data.datasource
 
-import com.shop.user.data.model.Banner
 import kotlinx.coroutines.flow.Flow
 
 sealed class Resource<T>(
@@ -11,4 +10,10 @@ sealed class Resource<T>(
     class Error<T>(message: String) : Resource<T>(message = message)
     class Loading<T> : Resource<T>()
     class Unspecified<T> : Resource<T>()
+}
+
+sealed class UiState<out T> {
+    data object Loading : UiState<Nothing>()
+    data class Success<out T>(val data: Flow<T>) : UiState<T>()
+    data class Error(val exception: Exception) : UiState<Nothing>()
 }
