@@ -84,6 +84,13 @@ class MainCategoryFragment :
         when (viewType) {
             Item.LIST_BANNER -> {
                 Timber.d("Banner clicked")
+                val bundle = Bundle().apply {
+                    putInt("bannerId", position)
+                }
+                findNavController().navigate(
+                    R.id.action_homeFragment_to_productDetailFragment,
+                    bundle
+                )
                 showSnackBarShort("Banner clicked", binding.root)
             }
 
@@ -91,9 +98,8 @@ class MainCategoryFragment :
                 Timber.d("Best seller clicked")
                 Toast.makeText(context, "Best seller clicked", Toast.LENGTH_SHORT).show()
                 showSnackBarShort("Best seller clicked", binding.root)
-                val productId = 1
                 val bundle = Bundle().apply {
-                    putInt("productId", productId)
+                    putInt("bestsellerId", position)
                 }
                 findNavController().navigate(
                     R.id.action_homeFragment_to_productDetailFragment,
@@ -103,8 +109,14 @@ class MainCategoryFragment :
 
             else -> {
                 Timber.d("Product clicked")
+                val bundle = Bundle().apply {
+                    putInt("productId", position)
+                }
                 showSnackBarShort("Product clicked", binding.root)
-                findNavController().navigate(R.id.action_homeFragment_to_productDetailFragment)
+                findNavController().navigate(
+                    R.id.action_homeFragment_to_productDetailFragment,
+                    bundle
+                )
             }
         }
     }
